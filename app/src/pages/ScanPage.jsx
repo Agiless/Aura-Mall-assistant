@@ -146,7 +146,7 @@ export default function ScanPage() {
         console.log(pair[0] + ": ", pair[1]); // Debugging formData
       }
 
-      const response = await fetch(`${API_BASE}/upload/`, {
+      const response = await fetch(`${API_BASE}/api/upload/`, {
         method: "POST",
         headers: {
           "X-CSRFToken": csrftoken,

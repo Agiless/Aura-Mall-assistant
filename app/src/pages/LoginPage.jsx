@@ -16,7 +16,7 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${API_BASE}/login/`, {
+    fetch(`${API_BASE}/api/login/`, {
         method: "POST",
         // Correct header syntax
         headers: {
