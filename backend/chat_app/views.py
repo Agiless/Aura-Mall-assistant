@@ -25,7 +25,7 @@ from .serializers import UploadedImageSerializer
 
 from .models import UploadedImage
 from .serializers import UploadedImageSerializer
-from .similarity import run_fashion_advisor, clip_model, db
+from .similarity import run_fashion_advisor, get_clip_model, db
 
 class UploadedImageCreateView(generics.CreateAPIView):
     queryset = UploadedImage.objects.all()
@@ -37,13 +37,21 @@ class UploadedImageCreateView(generics.CreateAPIView):
         image_path = os.path.join(settings.MEDIA_ROOT, str(instance.image))
 
         try:
+            # Lazy-load the CLIP model here
+            clip_model_instance = get_clip_model()
+
             # Use helper function to get recommended product image
-            recommended_image_url,msg = run_fashion_advisor(image_path, db_connection=db, clip_model_instance=clip_model)
+            recommended_image_url, msg = run_fashion_advisor(
+                image_path,
+                db_connection=db,
+                clip_model_instance=clip_model_instance
+            )
             self.recommended_image_url = recommended_image_url
             self.response_text = msg
         except Exception as e:
             print("Error in run_fashion_advisor:", e)
             self.recommended_image_url = None
+            self.response_text = ""
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
