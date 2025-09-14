@@ -102,14 +102,14 @@ function RegisterPage() {
     let data;
 
     if (registerType === "customer") {
-      endpoint = `${API_BASE}/register/`;
+      endpoint = `${API_BASE}/api/register/`;
       data = {
         username: formData.name,
         email: formData.email,
         password: formData.password,
       };
     } else if (registerType === "retailer") {
-      endpoint = `${API_BASE}/shop/register/`;
+      endpoint = `${API_BASE}/api/shop/register/`;
       data = {
         owner_name: formData.name,
         email: formData.email,
