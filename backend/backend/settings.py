@@ -32,6 +32,12 @@ SECRET_KEY = 'django-insecure-q88yr7czgo$8zv!a#g45)cli%b#^-#&(^jvohb72ab0r38_=w$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "mall-backend-vlie.onrender.com",
+]
+
 CORS_ALLOWED_ORIGINS = [
     "https://kpr-hackathon.vercel.app"
 ]
