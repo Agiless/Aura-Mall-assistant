@@ -1,3 +1,5 @@
+export const API_BASE = "https://mall-backend-vlie.onrender.com"; 
+
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
