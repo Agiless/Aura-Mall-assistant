@@ -1,4 +1,3 @@
-# helpers/fashion_recommender.py
 import os
 from dotenv import load_dotenv
 import requests
@@ -6,32 +5,53 @@ from io import BytesIO
 from PIL import Image
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from sentence_transformers import SentenceTransformer
 import google.generativeai as genai
+
 load_dotenv()
 
 # ------------------------------
-# 1. Load Model and MongoDB
+# MongoDB Setup
 # ------------------------------
-print("Loading CLIP model...")
-clip_model = SentenceTransformer('clip-ViT-B-32')
-print("CLIP model loaded successfully!")
-
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-# MongoDB Connection
-MONGO_URI = "mongodb+srv://mirun:mirun2005@cluster0.wka17ox.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://mirun:mirun2005@cluster0.wka17ox.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
 db = client["auraMallDB"]
 products_collection = db["products"]
 
 # ------------------------------
-# 2. Indexing Products
+# Gemini AI Setup
+# ------------------------------
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+# ------------------------------
+# Lazy Loading CLIP Model
+# ------------------------------
+_clip_model = None
+
+def get_clip_model():
+    global _clip_model
+    if _clip_model is None:
+        try:
+            from sentence_transformers import SentenceTransformer
+            print("Loading CLIP model...")
+            _clip_model = SentenceTransformer("clip-ViT-B-32")
+            print("CLIP model loaded successfully!")
+        except Exception as e:
+            print(f"Error loading CLIP model: {e}")
+            _clip_model = None
+    return _clip_model
+
+# ------------------------------
+# Index Product Images
 # ------------------------------
 def index_product_images():
     """
-    Run this function manually to generate embeddings for all products
-    and store them in MongoDB.
+    Generate embeddings for all products and store in MongoDB.
     """
+    clip_model = get_clip_model()
+    if clip_model is None:
+        print("Cannot index products: CLIP model not loaded.")
+        return
+
     docs = list(products_collection.find({}))
     print(f"Found {len(docs)} products to index")
 
@@ -44,17 +64,15 @@ def index_product_images():
                 print(f"⚠️ Skipping product {product_id} (no image URL)")
                 continue
 
-            # Step 1: Download the product image
+            # Download image
             response = requests.get(img_url, timeout=10)
             response.raise_for_status()
-
-            # Step 2: Open the image
             image = Image.open(BytesIO(response.content))
 
-            # Step 3: Generate embedding
+            # Generate embedding
             embedding = clip_model.encode(image).tolist()
 
-            # Step 4: Save embedding to MongoDB
+            # Save embedding
             products_collection.update_one(
                 {"_id": product_id},
                 {"$set": {"image_embedding": embedding}}
@@ -65,29 +83,30 @@ def index_product_images():
         except Exception as e:
             print(f"❌ Failed to index product {product.get('name', product_id)}: {e}")
 
-
 # ------------------------------
-# 3. Main Recommendation Function
+# Fashion Advisor
 # ------------------------------
-def run_fashion_advisor(user_image_path, db_connection=None, clip_model_instance=None):
+def run_fashion_advisor(user_image_path):
     """
-    Given a user's uploaded image, return the top recommended product image URL.
+    Given a user's uploaded image, return the top recommended product and AI text.
     """
     try:
-        # Use provided model or default
-        model = clip_model_instance if clip_model_instance else clip_model
+        clip_model = get_clip_model()
+        if clip_model is None:
+            print("CLIP model not available.")
+            return None
 
-        # Step 1: Load the uploaded image
+        # Load user image
         image = Image.open(user_image_path)
 
-        # Step 2: Generate query vector
-        query_vector = model.encode(image).tolist()
+        # Generate query vector
+        query_vector = clip_model.encode(image).tolist()
 
-        # Step 3: MongoDB Vector Search Pipeline
+        # MongoDB Vector Search
         pipeline = [
             {
                 "$vectorSearch": {
-                    "index": "vector_index",  # Make sure this matches your MongoDB Atlas Search index
+                    "index": "vector_index",  # Make sure your Atlas Search index matches
                     "path": "image_embedding",
                     "queryVector": query_vector,
                     "numCandidates": 150,
@@ -106,33 +125,21 @@ def run_fashion_advisor(user_image_path, db_connection=None, clip_model_instance
             }
         ]
 
-        # Step 4: Execute search
         results = list(products_collection.aggregate(pipeline))
-
         if not results:
-            return None  # No recommendations found
+            return None
 
-        # Return the **top result's image URL**
+        # Use Gemini AI to generate text
         gemini_model = genai.GenerativeModel("gemini-1.5-flash")
         prompt = f"""
-        You are a highly persuasive and friendly salesperson. 
-        Recommend the following product to a customer in a natural, conversational tone.
-        Reply in 1-2 lines beacause this is a chatbot, return it like you send a text to someone
-        Product Name: {results[0]["name"]}
-        Brand: {results[0]["brand"]}
-        Price: ₹{results[0]["price"]}
-
-        Output Requirements:
-        - Start with a warm greeting.
-        - Mention the brand and why it's trustworthy or premium.
-        - Highlight the key features and benefits of the product.
-        - End with a strong call-to-action encouraging the user to buy.
+        You are a friendly salesperson. Recommend this product in 1-2 lines.
+        Product Name: {results[0]['name']}
+        Brand: {results[0]['brand']}
+        Price: ₹{results[0]['price']}
         """
 
         response = gemini_model.generate_content(prompt)
-        print(response.text)
-        response_text = response.text
-        return results[0]["image_url"],response_text
+        return results[0]["image_url"], response.text
 
     except Exception as e:
         print(f"Error in run_fashion_advisor: {e}")
