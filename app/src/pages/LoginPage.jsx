@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react"; 
+import { API_BASE } from "../../utils";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("api/login/", {
+    fetch(`${API_BASE}/login/`, {
         method: "POST",
         // Correct header syntax
         headers: {

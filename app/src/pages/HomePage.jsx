@@ -106,7 +106,7 @@ const csrftoken = getCookie('csrftoken');
   localStorage.removeItem("user");
 
   try {
-    const resp = await fetch(`${API_BASE}/api/logout/`, {
+    const resp = await fetch(`${API_BASE}/logout/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

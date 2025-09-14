@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { API_BASE } from "../../utils";
 
 
 function RegisterPage() {
@@ -73,70 +74,7 @@ function RegisterPage() {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
 
-  //   if (formData.password !== formData.confirmPassword) {
-  //     alert("Passwords do not match!");
-  //     return;
-  //   }
-
-  //   // Check if all password rules are satisfied
-  //   if (
-  //     !(
-  //       passwordValidations.length &&
-  //       passwordValidations.upper &&
-  //       passwordValidations.lower &&
-  //       passwordValidations.number &&
-  //       passwordValidations.special
-  //     )
-  //   ) {
-  //     alert("Password is not strong enough!");
-  //     return;
-  //   }
-
-  //   // 👉 Save new user to localStorage
-  //   fetch("api/register/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       username: formData.name,
-  //       // Assuming your Django serializer also expects an 'email' field.
-  //       // If not, you may need to collect email separately.
-  //       email: formData.email,
-  //       password: formData.password,
-  //     }),
-  //   })
-  //   .then((response) => {
-  //     if (!response.ok) {
-  //       // If the server returns an error (e.g., 400 Bad Request),
-  //       // parse the error message and throw a new error.
-  //       return response.json().then(errorData => {
-  //           const errorMessage = Object.values(errorData).flat().join(' ');
-  //           throw new Error(errorMessage || 'Registration failed.');
-  //       });
-  //     }
-  //     // If successful, parse the JSON response.
-  //     return response.json();
-  //   })
-  //   .then((data) => {
-  //     // This block runs ONLY if the registration was successful.
-  //     console.log("Registration successful:", data);
-  //     alert("Registration successful! You can now log in.");
-  //     navigate("/login");
-  //   })
-  //   .catch((err) => {
-  //     // This block runs if there's a network error or an API-level error.
-  //     console.error("Registration error:", err);
-  //     setShowConfirmPassword(err.message);
-  //   });
-  //   // localStorage.setItem("user", JSON.stringify(formData));
-  //   // navigate("/home");
-  //   localStorage.setItem("user", JSON.stringify(formData));
-  //   navigate("/");
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -164,14 +102,14 @@ function RegisterPage() {
     let data;
 
     if (registerType === "customer") {
-      endpoint = "api/register/";
+      endpoint = `${API_BASE}/register/`;
       data = {
         username: formData.name,
         email: formData.email,
         password: formData.password,
       };
     } else if (registerType === "retailer") {
-      endpoint = "api/shop/register/";
+      endpoint = `${API_BASE}/shop/register/`;
       data = {
         owner_name: formData.name,
         email: formData.email,

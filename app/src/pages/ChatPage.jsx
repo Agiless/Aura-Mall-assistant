@@ -100,7 +100,7 @@ function ChatPage() {
         formData.append('image', pendingImage.file); // The key 'image' must match your serializer
 
         try {
-            const response = await fetch(`${API_BASE}/api/upload/`, {
+            const response = await fetch(`${API_BASE}/upload/`, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': csrftoken,
@@ -142,7 +142,7 @@ function ChatPage() {
     setInput(""); // Clear the input field
 
     // Fetch call to the chat API for text messages
-    fetch("api/chat/", {
+    fetch(`${API_BASE}/chat/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
