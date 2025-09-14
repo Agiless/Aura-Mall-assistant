@@ -62,6 +62,17 @@ CSRF_TRUSTED_ORIGINS = [
     "https://kpr-hackathon.vercel.app",
 ]
 
+CORS_ALLOW_ALL_HEADERS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
 # ------------------------------
 # TEMPLATES (added debug context processor)
 # ------------------------------
