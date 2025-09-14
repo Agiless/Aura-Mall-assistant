@@ -1,6 +1,7 @@
 
 import React, { useRef, useState } from "react";
 import getCookie from "../../utils";
+import { API_BASE } from "../../utils";
 import Navbar from "../components/Navbar";
 
 export default function ScanPage() {
