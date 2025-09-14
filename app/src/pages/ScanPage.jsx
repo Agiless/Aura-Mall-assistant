@@ -99,7 +99,7 @@ export default function ScanPage() {
       formData.append("upload_preset", "your_unsigned_preset"); // Replace with Cloudinary preset
 
       const response = await fetch(
-        "https:/{API_BASE}/api.cloudinary.com/v1_1/<your-cloud-name>/image/upload",
+        "https:/api.cloudinary.com/v1_1/<your-cloud-name>/image/upload",
         {
           method: "POST",
           body: formData,
@@ -146,7 +146,7 @@ export default function ScanPage() {
         console.log(pair[0] + ": ", pair[1]); // Debugging formData
       }
 
-      const response = await fetch("{API_BASE}/api/upload/", {
+      const response = await fetch(`${API_BASE}/api/upload/`, {
         method: "POST",
         headers: {
           "X-CSRFToken": csrftoken,
