@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     // Allows your Vite dev server to be accessed by your ngrok URL
     allowedHosts: [
-      'kpr-hackathon-st79zzkrj-agilessshobika-gmailcoms-projects.vercel.app/' 
+      'kpr-hackathon-st79zzkrj-agilessshobika-gmailcoms-projects.vercel.app' 
     ],
     proxy: {
   "/api": {
