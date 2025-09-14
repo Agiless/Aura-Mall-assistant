@@ -33,15 +33,13 @@ SECRET_KEY = 'django-insecure-q88yr7czgo$8zv!a#g45)cli%b#^-#&(^jvohb72ab0r38_=w$
 DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173"
+    "https://kpr-hackathon.vercel.app"
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_ALL_ORIGINS=True
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',
-    "http://127.0.0.1:5173","https://5f61061fa018.ngrok-free.app"]
+CSRF_TRUSTED_ORIGINS = ["https://kpr-hackathon.vercel.app"]
 
 # Application definition
 
