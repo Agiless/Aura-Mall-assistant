@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import MallHighlights from "./MallHighlights";
 import getCookie from "../../utils";
+import { API_BASE } from "../../utils";
 
 const mockFeatures = [
   { title: "3D Map", description: "Explore the mall in 3D with floor navigation", path: "/map" },
