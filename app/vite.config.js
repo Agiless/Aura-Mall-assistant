@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     // Allows your Vite dev server to be accessed by your ngrok URL
     allowedHosts: [
-      '5f61061fa018.ngrok-free.app' 
+      '789db6a0d5ce.ngrok-free.app' 
     ],
     proxy: {
   "/api": {
