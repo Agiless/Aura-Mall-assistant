@@ -7,11 +7,11 @@ export default defineConfig({
   server: {
     // Allows your Vite dev server to be accessed by your ngrok URL
     allowedHosts: [
-      '5f61061fa018.ngrok-free.app' 
+      'kpr-hackathon-st79zzkrj-agilessshobika-gmailcoms-projects.vercel.app/' 
     ],
     proxy: {
   "/api": {
-    target: "http://127.0.0.1:8000",
+    target: "https://mall-backend-vlie.onrender.com",
     changeOrigin: true,
     secure: false,
   },
