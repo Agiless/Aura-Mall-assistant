@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .serializers import UserSerializer
 from .utils import get_chatbot_response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from .models import ChatSession, ChatMessage
 from .serializers import ShopRegistrationSerializer
 from .models import Shop,UploadedImage
@@ -16,6 +16,8 @@ from .serializers import UploadedImageSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 import os
 from django.conf import settings
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 # Rename the view to avoid collision and use a generic view for simplicity
 from .models import UploadedImage
@@ -116,26 +118,29 @@ class ShopLoginView(APIView):
                 return Response({'error': 'Invalid credentials'}, status=400)
         except Shop.DoesNotExist:
             return Response({'error': 'Invalid credentials'}, status=400)
-
+        
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def chatbot_response(request):
     user_message = request.data.get('message')
     if not user_message:
         return Response({'error': 'Message cannot be empty'}, status=400)
 
-    # Get the user's current chat session or create a new one
-    try:
-        session = ChatSession.objects.get(user=request.user)
-    except ChatSession.DoesNotExist:
-        session = ChatSession.objects.create(user=request.user)
+    # Get or create chat session
+    session, _ = ChatSession.objects.get_or_create(user=request.user)
 
-    # Save the user's message
+    # Save user message
     ChatMessage.objects.create(session=session, sender='user', message=user_message)
 
-    # Call the new function to get the bot's response
-    bot_response_text = get_chatbot_response(user_message)
+    # Get bot response safely
+    try:
+        bot_response_text = get_chatbot_response(user_message)
+    except Exception as e:
+        bot_response_text = ""
+        print("Chatbot error:", e)
 
-    # Save the bot's response
+    # Save bot message
     ChatMessage.objects.create(session=session, sender='bot', message=bot_response_text)
 
     return Response({'response': bot_response_text})
