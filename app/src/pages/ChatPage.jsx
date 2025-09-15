@@ -148,9 +148,9 @@ function ChatPage() {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Token ${token}`,
-        "X-CSRFToken": csrftoken
+        // "X-CSRFToken": csrftoken
       },
-      credentials: "include",
+      // credentials: "include",
       body: JSON.stringify({
         message: userMessage
       }),
