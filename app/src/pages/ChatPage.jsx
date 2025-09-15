@@ -16,7 +16,7 @@ function ChatPage() {
   const [pendingCaption, setPendingCaption] = useState("");
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const token = JSON.parse(localStorage.getItem("authToken") || 'null');
+  const token = localStorage.getItem("authToken") || 'null';
   useEffect(()=>{
 
   },[])
