@@ -16,6 +16,7 @@ function ChatPage() {
   const [pendingCaption, setPendingCaption] = useState("");
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const token = JSON.parse(localStorage.getItem("authToken") || 'null');
   useEffect(()=>{
 
   },[])
@@ -146,6 +147,7 @@ function ChatPage() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${token}`,
         "X-CSRFToken": csrftoken
       },
       credentials: "include",
