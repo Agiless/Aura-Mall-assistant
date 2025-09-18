@@ -131,16 +131,16 @@ def chatbot_response(request):
     session, _ = ChatSession.objects.get_or_create(user=request.user)
 
     # Save user message
-    ChatMessage.objects.create(session=session, sender='user', message=user_message)
+    #ChatMessage.objects.create(session=session, sender='user', message=user_message)
 
     # Get bot response safely
     try:
         bot_response_text = get_chatbot_response(user_message)
     except Exception as e:
-        bot_response_text = ""
+        bot_response_text = "error"
         print("Chatbot error:", e)
 
     # Save bot message
-    ChatMessage.objects.create(session=session, sender='bot', message=bot_response_text)
+    #ChatMessage.objects.create(session=session, sender='bot', message=bot_response_text)
 
     return Response({'response': bot_response_text})
