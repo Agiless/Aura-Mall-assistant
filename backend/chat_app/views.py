@@ -128,7 +128,7 @@ def chatbot_response(request):
         return Response({'error': 'Message cannot be empty'}, status=400)
 
     # Get or create chat session
-    session, _ = ChatSession.objects.get_or_create(user=request.user)
+    #session, _ = ChatSession.objects.get_or_create(user=request.user)
 
     # Save user message
     #ChatMessage.objects.create(session=session, sender='user', message=user_message)
