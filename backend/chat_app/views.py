@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from .models import ChatSession, ChatMessage
 from .serializers import ShopRegistrationSerializer
 from .models import Shop,UploadedImage
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import UploadedImageSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -72,6 +72,8 @@ class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 class UserLoginView(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
