@@ -126,8 +126,8 @@ class ShopLoginView(APIView):
         
 @csrf_exempt  # Token authentication is stateless, CSRF can be exempted
 @api_view(["POST"])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
+@authentication_classes([])
+@permission_classes([AllowAny])
 def chatbot_response(request):
     user_message = request.data.get('message')
     if not user_message:
