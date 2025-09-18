@@ -68,6 +68,7 @@ class UploadedImageCreateView(generics.CreateAPIView):
 
 
 class UserRegistrationView(generics.CreateAPIView):
+    permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -101,10 +102,12 @@ class LogoutAPIView(APIView):
 
 
 class ShopRegistrationView(generics.CreateAPIView):
+    permission_classes = [AllowAny]
     queryset = Shop.objects.all()
     serializer_class = ShopRegistrationSerializer
 
 class ShopLoginView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
