@@ -124,9 +124,10 @@ class ShopLoginView(APIView):
         except Shop.DoesNotExist:
             return Response({'error': 'Invalid credentials'}, status=400)
         
-#@api_view(["POST"])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
+@csrf_exempt  # Token authentication is stateless, CSRF can be exempted
+@api_view(["POST"])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def chatbot_response(request):
     user_message = request.data.get('message')
     if not user_message:
