@@ -33,12 +33,12 @@ Aura is an **all-in-one mall assistant** that:
 
 ## ✨ What Aura Can Do
 
-✔ Conversational AI – Chat with Aura for directions, store info, and promotions.
-✔ Visual Product Search – Upload a product image to find matches inside the mall.
-✔ 3D Indoor Navigation – Interactive map with shortest-path guidance.
-✔ Parking & Service Finder – Check live availability.
-✔ SOS Safety System – Trigger alerts in case of emergencies.
-✔ Feature Image Rendering – If you buy a shirt, Aura suggests matching accessories, pants, or related products.
+✔ Conversational AI – Chat with Aura for directions, store info, and promotions.\n
+✔ Visual Product Search – Upload a product image to find matches inside the mall.\n
+✔ 3D Indoor Navigation – Interactive map with shortest-path guidance.\n
+✔ Parking & Service Finder – Check live availability.\n
+✔ SOS Safety System – Trigger alerts in case of emergencies.\n
+✔ Feature Image Rendering – If you buy a shirt, Aura suggests matching accessories, pants, or related products.\n
 ✔ Credit System (Aura Coins) – Users earn coins by leaving genuine reviews (based on majority sentiment). These coins can be redeemed for discounts, offers, or even selected products.
 
 ---
