@@ -19,27 +19,29 @@ Malls are exciting, but they can also be overwhelming. **Aura exists to make tha
 
 ---
 
-## 💡 Our Solution
 
-Aura is an **all-in-one mall assistant** that:
+## 💡 What Aura Can Do
 
-* Answers shopper queries with **AI-powered chat**.
-* Finds products just by **snapping a photo**.
-* Offers **3D indoor navigation** so you’ll never be lost again.
-* Provides **community safety features (SOS alerts)**.
-* Helps retailers **increase visibility and engagement**.
+- **AI-Powered Conversational Assistant**  
+  Answer queries, provide store info, directions, and highlight ongoing promotions.  
 
----
+- **Visual Product Search**  
+  Snap or upload a product image to instantly find matches inside the mall.  
 
-## ✨ What Aura Can Do
+- **3D Indoor Navigation**  
+  Interactive maps with shortest-path guidance to stores, amenities, and exits.  
 
-✔ Conversational AI – Chat with Aura for directions, store info, and promotions.\n
-✔ Visual Product Search – Upload a product image to find matches inside the mall.\n
-✔ 3D Indoor Navigation – Interactive map with shortest-path guidance.\n
-✔ Parking & Service Finder – Check live availability.\n
-✔ SOS Safety System – Trigger alerts in case of emergencies.\n
-✔ Feature Image Rendering – If you buy a shirt, Aura suggests matching accessories, pants, or related products.\n
-✔ Credit System (Aura Coins) – Users earn coins by leaving genuine reviews (based on majority sentiment). These coins can be redeemed for discounts, offers, or even selected products.
+- **Parking & Service Finder**  
+  Check real-time availability of parking spots and other mall services.  
+
+- **SOS Safety System**  
+  Trigger emergency alerts for instant community assistance.  
+
+- **Feature Image Rendering**  
+  Suggests matching accessories, clothing items, or related products based on your purchase.  
+
+- **Credit System (Aura Coins)**  
+  Earn coins by leaving genuine reviews (evaluated via majority sentiment), which can be redeemed for discounts, offers, or selected products.  
 
 ---
 
