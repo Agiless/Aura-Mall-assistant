@@ -10,25 +10,6 @@
 
 ---
 
-## 📖 Table of Contents
-
-* [Why We Built Aura](#why-we-built-aura)
-* [Our Solution](#our-solution)
-* [What Aura Can Do](#what-aura-can-do)
-* [How It Works](#how-it-works)
-* [Tech Stack](#tech-stack)
-* [Project Structure](#project-structure)
-* [Getting Started](#getting-started)
-* [Using Aura](#using-aura)
-* [Configuration](#configuration)
-* [Roadmap](#roadmap)
-* [Impact](#impact)
-* [Team](#team)
-* [Contributing](#contributing)
-* [License](#license)
-* [Acknowledgements](#acknowledgements)
-
----
 
 ## ❓ Why We Built Aura
 
@@ -62,18 +43,6 @@ Aura is an **all-in-one mall assistant** that:
 
 ---
 
-## 🏗️ How It Works
-
-* **Frontend** → React.js + TailwindCSS + Blender models.
-* **Backend** → Django REST APIs.
-* **Databases** → SQLite (structured), MongoDB (catalogs), Vector DB (search).
-* **AI Modules** →
-
-  * Qwen-3 LLM (with RAG) for chat.
-  * CLIP for product image embeddings.
-  * BFS/A\* for navigation.
-
----
 
 ## 🛠️ Tech Stack
 
@@ -81,22 +50,9 @@ Aura is an **all-in-one mall assistant** that:
 * **Backend**: Django REST APIs (Python)
 * **Databases**: SQLite, MongoDB, Vector DB
 * **AI/ML**: Qwen-3 LLM, CLIP (vision search), BFS/A\* (pathfinding)
-* **Tools**: Docker, Git, Node.js, Python
+* **Tools**: Docker, Git, Python
 
 ---
-
-## 📂 Project Structure
-
-```
-Aura-Mall-Assistant/
-├── app/                # Frontend (React.js)
-├── backend/            # Backend (Django APIs)
-├── chatbot/            # Conversational AI logic
-├── product_search/     # Visual product finder
-├── navigation/         # Indoor navigation & 3D maps
-├── requirements.txt    # Python dependencies
-└── README.md
-```
 
 ---
 
@@ -159,16 +115,6 @@ Example APIs:
 
 ---
 
-## 🔑 Configuration
-
-Create a `.env` file:
-
-```
-DATABASE_URL=mongodb://localhost:27017/aura
-SECRET_KEY=supersecret123
-VITE_API_URL=http://127.0.0.1:8000
-```
-
 ---
 
 ## 🗺️ Roadmap
@@ -187,50 +133,6 @@ VITE_API_URL=http://127.0.0.1:8000
 
 ---
 
-## 👨‍💻 Team
-
-* **Mirun Kaushik** – Vision & Architecture
-* **Agiless Deepakram** – Backend & AI Integration
-* **Manojkumar** – Frontend & 3D Models
-
----
-
-## 🤝 Contributing
-
-We’d love your contributions 🚀
-
-1. Fork the repo → [KPR-Hackathon](https://github.com/Agiless/KPR-Hackathon.git)
-2. Create a branch: `git checkout -b feature/new-feature`
-3. Commit: `git commit -m "Added new feature"`
-4. Push & open a Pull Request.
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 🙌 Acknowledgements
-
-* [React.js](https://react.dev/)
-* [Django](https://www.djangoproject.com/)
-* [MongoDB](https://www.mongodb.com/)
-* [Blender](https://www.blender.org/)
-* [Qwen-3 LLM](https://huggingface.co/)
-* Hackathon mentors, teammates, and **KPR Hackathon** ❤️
-
----
-
-## 🏅 Badges
-
-![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![Python](https://img.shields.io/badge/python-3.8+-blue)
-![Frontend](https://img.shields.io/badge/frontend-react-orange)
-![License](https://img.shields.io/badge/license-MIT-green)
-
----
 
 ✨ Aura isn’t just a hackathon project. It’s our **vision for smarter, safer, and more engaging malls**.
 
