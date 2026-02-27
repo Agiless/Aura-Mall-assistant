@@ -1,4 +1,4 @@
-# KPR-Hackathon
+# Aura-Mall-Assistant
 
 ---
 
