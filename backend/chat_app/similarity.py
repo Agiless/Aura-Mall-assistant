@@ -130,7 +130,7 @@ def run_fashion_advisor(user_image_path):
             return None
 
         # Use Gemini AI to generate text
-        gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+        gemini_model = genai.GenerativeModel("gemini-2.5-flash")
         prompt = f"""
         You are a friendly salesperson. Recommend this product in 1-2 lines.
         Product Name: {results[0]['name']}

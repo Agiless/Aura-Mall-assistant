@@ -5,7 +5,7 @@ import json
 
 # --- Gemini setup (keep API key in env var ideally) ---
 genai.configure(api_key="AIzaSyBOV4I_F0MeWrxVglN6lhZ7vt84u-GFFtY")#AIzaSyBiVDyT_scKALxY3Gl3Z8Ydb6d_hQM8Yjc"
-embedding_model = "models/embedding-001"
+embedding_model = "models/gemini-embedding-001"
 
 # --- MongoDB setup (move URI to env var for security) ---
 uri = "mongodb+srv://mirunkaushik:mirun2005@cluster0.zdhf1hl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"

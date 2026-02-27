@@ -8,14 +8,15 @@ load_dotenv()
 
 # --- Gemini setup (keep API key in env var ideally) ---
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-embedding_model = "models/embedding-001"
+embedding_model = "models/gemini-embedding-001"
 
 # --- MongoDB setup (move URI to env var for security) ---
 uri = "mongodb+srv://mirunkaushik:mirun2005@cluster0.zdhf1hl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["auraMallDB"]
-query = input("Hey there what can i help you with? ")
+#query = input("Hey there what can i help you with? ")
+query = "Do you have any electronics stores?"
 query_embedding = genai.embed_content(model=embedding_model, content=query)["embedding"]
 
 pipeline = [
@@ -81,6 +82,6 @@ Database Context: {context}
 Answer:
 """
 
-response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
+response = genai.GenerativeModel("gemini-2.5-flash").generate_content(prompt)
 
 print("\n💬 Chatbot Answer:\n", response.text)

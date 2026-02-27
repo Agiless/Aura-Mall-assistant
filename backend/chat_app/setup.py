@@ -7,8 +7,8 @@ from django.conf import settings
 
 # --- Gemini setup ---
 genai.configure(api_key=settings.GEMINI_API_KEY)
-embedding_model = "models/embedding-001"
-gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+embedding_model = "models/gemini-embedding-001"
+gemini_model = genai.GenerativeModel("gemini-2.5-flash")
 
 # --- MongoDB setup ---
 uri = settings.MONGODB_URI
